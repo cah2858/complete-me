@@ -1,9 +1,13 @@
 import { expect } from 'chai';
-import Trie from '../lib/Trie'
+import Trie from '../lib/Trie';
+import fs from 'fs';
+
 
 describe('TRIE', () => {
   let trie;
-
+  const text = "/usr/share/dict/words";
+  const dictionary = fs.readFileSync(text).toString().trim().split('\n');
+  
   beforeEach(() => {
     trie = new Trie();
   });
@@ -32,10 +36,10 @@ describe('TRIE', () => {
   });
 
   it('should suggest as array of words', () => {
-    trie.insert('hello');
-    trie.insert('help');
-    trie.insert('poop');
+    trie.insert('yellow');
+    trie.insert('green');
+    trie.insert('red');
     let response = trie.suggest('h');
-    expect(response).to.deep.eq(['hello', 'help'])
+    expect(response).to.deep.eq(['yellow', 'green', 'red'])
   });
 });
