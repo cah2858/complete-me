@@ -35,11 +35,20 @@ describe('TRIE', () => {
     expect(trie.root).to.have.property('p') 
   });
 
+  it('should insert a word by invoking the insert method', () => {
+    trie.insert('hello');
+    expect(trie.root).to.have.property('h');
+  })
+
   it('should suggest as array of words', () => {
-    trie.insert('yellow');
-    trie.insert('green');
-    trie.insert('red');
-    let response = trie.suggest('h');
-    expect(response).to.deep.eq(['yellow', 'green', 'red'])
+    trie.insert('hello');
+    trie.insert('hey');
+
+    let response = trie.suggest('he');
+    expect(response).to.deep.eq(['hello', 'hey'])
+  });
+  it('should populate with words', () => {
+    trie.populate(dictionary);
+    expect(trie.totalWords).to.eq(235886);
   });
 });
