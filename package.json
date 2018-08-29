@@ -18,6 +18,7 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "eslint": "^5.4.0",
+    "locus": "^2.0.1",
     "mocha": "^5.2.0"
   },
   "dependencies": {
