@@ -51,4 +51,10 @@ describe('TRIE', () => {
     trie.populate(dictionary);
     expect(trie.totalWords).to.eq(235886);
   });
+
+  it('should pass in 2 words with one word having an additional letter', () => {
+    trie.insert('work');
+    trie.insert('works');
+    expect(trie.suggest('wor')).to.deep.eq(['work', 'works']);
+  });
 });
