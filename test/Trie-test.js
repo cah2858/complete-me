@@ -22,39 +22,35 @@ describe('TRIE', () => {
 
   it('should increase totalWords each time we instantiate a new word', () => {
     expect(trie.totalWords).to.eq(0);
-    trie.insert('poop')
+    trie.insert('hello')
     expect(trie.totalWords).to.eq(1)
   });
 
   it('should insert a word by invoking the insert method', () => {
     trie.insert('hello');
     trie.insert('cool');
-    trie.insert('poop');
+    trie.insert('puppy');
     expect(trie.root).to.have.property('h') 
     expect(trie.root).to.have.property('c') 
     expect(trie.root).to.have.property('p') 
-  });
-
-  it('should insert a word by invoking the insert method', () => {
-    trie.insert('hello');
-    expect(trie.root).to.have.property('h');
-  })
-
-  it('should suggest as array of words', () => {
-    trie.insert('hello');
-    trie.insert('hey');
-
-    let response = trie.suggest('he');
-    expect(response).to.deep.eq(['hello', 'hey'])
-  });
-  it('should populate with words', () => {
-    trie.populate(dictionary);
-    expect(trie.totalWords).to.eq(235886);
   });
 
   it('should pass in 2 words with one word having an additional letter', () => {
     trie.insert('work');
     trie.insert('works');
     expect(trie.suggest('wor')).to.deep.eq(['work', 'works']);
+  });
+
+  it('should suggest an array of words', () => {
+    trie.insert('cat');
+    trie.insert('car');
+    let response = trie.suggest('ca');
+    // console.log(JSON.stringify(trie, null, 4))
+    expect(response).to.deep.eq(['cat', 'car'])
+  });
+
+  it('should populate with words', () => {
+    trie.populate(dictionary);
+    expect(trie.totalWords).to.eq(235886);
   });
 });
