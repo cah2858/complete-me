@@ -80,7 +80,7 @@ describe('TRIE', () => {
     trie.insert('hello')
     trie.insert('helicopter')
     trie.insert('ham')
-    trie.insert('bye')
+    console.log(JSON.stringify(trie, null, 4))
 
     expect(trie.suggest('hel')).to.deep.equal(['help', 'hello', 'helicopter']);
   });
